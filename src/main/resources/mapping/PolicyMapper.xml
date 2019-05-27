@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chuangxian.dao.PolicyMapper" >
+  <resultMap id="BaseResultMap" type="com.chuangxian.entity.Policy" >
+    <id column="policy_id" property="policyId" jdbcType="INTEGER" />
+    <result column="poicy_title" property="poicyTitle" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+    <result column="publish_institution" property="publishInstitution" jdbcType="VARCHAR" />
+    <result column="issued_num" property="issuedNum" jdbcType="VARCHAR" />
+    <result column="classify" property="classify" jdbcType="VARCHAR" />
+    <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
+    <result column="image_url" property="imageUrl" jdbcType="VARCHAR" />
+    <result column="file_url" property="fileUrl" jdbcType="VARCHAR" />
+    <result column="original_url" property="originalUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.chuangxian.entity.Policy" extends="BaseResultMap" >
+    <result column="policy_content" property="policyContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    policy_id, poicy_title, level, publish_institution, issued_num, classify, publish_time, 
+    image_url, file_url, original_url
+  </sql>
+  <sql id="Blob_Column_List" >
+    policy_content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from policy
+    where policy_id = #{policyId,jdbcType=INTEGER}
+  </select>
+    <select id="selectByOriginalUrl" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
+      select
+      <include refid="Base_Column_List" />
+      ,
+      <include refid="Blob_Column_List" />
+      from policy
+      where original_url = #{originalUrl,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from policy
+    where policy_id = #{policyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chuangxian.entity.Policy" >
+    insert into policy (policy_id, poicy_title, level,
+      publish_institution, issued_num, classify, 
+      publish_time, image_url, file_url, 
+      original_url, policy_content)
+    values (#{policyId,jdbcType=INTEGER}, #{poicyTitle,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR},
+  #{publishInstitution,jdbcType=VARCHAR}, #{issuedNum,jdbcType=VARCHAR}, #{classify,jdbcType=VARCHAR},
+  #{publishTime,jdbcType=TIMESTAMP}, #{imageUrl,jdbcType=VARCHAR}, #{fileUrl,jdbcType=VARCHAR},
+  #{originalUrl,jdbcType=VARCHAR}, #{policyContent,jdbcType=LONGVARCHAR})
+</insert>
+  <insert id="insertSelective" parameterType="com.chuangxian.entity.Policy" >
+    insert into policy
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="policyId != null" >
+        policy_id,
+      </if>
+      <if test="poicyTitle != null" >
+        poicy_title,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="publishInstitution != null" >
+        publish_institution,
+      </if>
+      <if test="issuedNum != null" >
+        issued_num,
+      </if>
+      <if test="classify != null" >
+        classify,
+      </if>
+      <if test="publishTime != null" >
+        publish_time,
+      </if>
+      <if test="imageUrl != null" >
+        image_url,
+      </if>
+      <if test="fileUrl != null" >
+        file_url,
+      </if>
+      <if test="originalUrl != null" >
+        original_url,
+      </if>
+      <if test="policyContent != null" >
+        policy_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="policyId != null" >
+        #{policyId,jdbcType=INTEGER},
+      </if>
+      <if test="poicyTitle != null" >
+        #{poicyTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="publishInstitution != null" >
+        #{publishInstitution,jdbcType=VARCHAR},
+      </if>
+      <if test="issuedNum != null" >
+        #{issuedNum,jdbcType=VARCHAR},
+      </if>
+      <if test="classify != null" >
+        #{classify,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null" >
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imageUrl != null" >
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUrl != null" >
+        #{fileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="originalUrl != null" >
+        #{originalUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="policyContent != null" >
+        #{policyContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangxian.entity.Policy" >
+    update policy
+    <set >
+      <if test="poicyTitle != null" >
+        poicy_title = #{poicyTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="publishInstitution != null" >
+        publish_institution = #{publishInstitution,jdbcType=VARCHAR},
+      </if>
+      <if test="issuedNum != null" >
+        issued_num = #{issuedNum,jdbcType=VARCHAR},
+      </if>
+      <if test="classify != null" >
+        classify = #{classify,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null" >
+        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imageUrl != null" >
+        image_url = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUrl != null" >
+        file_url = #{fileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="originalUrl != null" >
+        original_url = #{originalUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="policyContent != null" >
+        policy_content = #{policyContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where policy_id = #{policyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.chuangxian.entity.Policy" >
+    update policy
+    set poicy_title = #{poicyTitle,jdbcType=VARCHAR},
+      level = #{level,jdbcType=VARCHAR},
+      publish_institution = #{publishInstitution,jdbcType=VARCHAR},
+      issued_num = #{issuedNum,jdbcType=VARCHAR},
+      classify = #{classify,jdbcType=VARCHAR},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      image_url = #{imageUrl,jdbcType=VARCHAR},
+      file_url = #{fileUrl,jdbcType=VARCHAR},
+      original_url = #{originalUrl,jdbcType=VARCHAR},
+      policy_content = #{policyContent,jdbcType=LONGVARCHAR}
+    where policy_id = #{policyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chuangxian.entity.Policy" >
+    update policy
+    set poicy_title = #{poicyTitle,jdbcType=VARCHAR},
+      level = #{level,jdbcType=VARCHAR},
+      publish_institution = #{publishInstitution,jdbcType=VARCHAR},
+      issued_num = #{issuedNum,jdbcType=VARCHAR},
+      classify = #{classify,jdbcType=VARCHAR},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      image_url = #{imageUrl,jdbcType=VARCHAR},
+      file_url = #{fileUrl,jdbcType=VARCHAR},
+      original_url = #{originalUrl,jdbcType=VARCHAR}
+    where policy_id = #{policyId,jdbcType=INTEGER}
+  </update>
+</mapper>

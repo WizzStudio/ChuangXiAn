@@ -27,7 +27,7 @@ spring:
   profiles: dev
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/volunteer_test?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+    url: jdbc:mysql://localhost:3306/chuangxian?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
     username: root
     password: 168168
   servlet:
@@ -62,7 +62,7 @@ spring:
   #设置开启热部署
   devtools:
     restart:
-      enabled: true
+      enabled: false
       additional-paths: src/main/java #重启目录
       exclude: WEB-INF/**
   freemarker:
@@ -79,7 +79,7 @@ spring:
   profiles: relase
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/volunteer_test?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+    url: jdbc:mysql://localhost:3306/chuangxian?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
     username: root
     password: Zmlnb&Zylnb666
   servlet:
