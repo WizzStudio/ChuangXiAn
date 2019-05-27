@@ -19,9 +19,9 @@ public class ScheduledTasks {
     /**
      * 定时器毫秒级别
      * initialDelay 初次执行任务之前需要等待的时间
-     * fixedRate    执行频率
+     * fixedRate    执行频率 --5小时
      */
-    @Scheduled(initialDelay = 1000*60, fixedRate = 1000 * 60)
+    @Scheduled(initialDelay = 1000 * 60 * 5, fixedRate = 1000 * 60 * 60 * 5)
     public void XiAnPolicyCrawlerSchedule() {
         XiAnPolicyCrawler crawler = new XiAnPolicyCrawler("src/main/resources/crawl/", true, 1, 0);
         try {
@@ -33,9 +33,10 @@ public class ScheduledTasks {
     }
 
     /**
-     * 第一次执行，全部爬虫存入数据库，后续只爬取第一页即可
+     * 定时执行，只执行一次，全部爬虫存入数据库
+     * 表达式：5月27日16：28：00 开始执行
     */
-    /*@Scheduled(cron = "0 49 16 27 5 ? 2019")
+    @Scheduled(cron = "0 28 16 27 5 * ")
     public void firstXiAnPolicyCrawler() {
         for (int page = 1; page <= 18; page++) {
             XiAnPolicyCrawler crawler = new XiAnPolicyCrawler("src/main/resources/crawl/", true, page, 0);
@@ -46,5 +47,5 @@ public class ScheduledTasks {
                 e.printStackTrace();
             }
         }
-    }*/
+    }
 }

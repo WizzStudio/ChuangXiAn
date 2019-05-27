@@ -77,7 +77,7 @@ public class XiAnPolicyCrawler extends BreadthCrawler {
         //this.addRegex("-.*.gif");
 
         /**设置线程数*/
-        setThreads(20);
+        setThreads(100);
 
         /**爬去网址个数最大值*/
         getConf().setTopN(100);
