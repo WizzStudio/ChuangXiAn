@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chuangxian.dao.PolicyLevelMapper" >
+  <resultMap id="BaseResultMap" type="com.chuangxian.entity.PolicyLevel" >
+    <id column="policy_id" property="policyId" jdbcType="INTEGER" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+    <result column="english_level" property="englishLevel" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    policy_id, level, english_level
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from policy_level
+    where policy_id = #{policyId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from  policy_level
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from policy_level
+    where policy_id = #{policyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chuangxian.entity.PolicyLevel" >
+    insert into policy_level (policy_id, level, english_level
+      )
+    values (#{policyId,jdbcType=INTEGER}, #{level,jdbcType=VARCHAR}, #{englishLevel,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chuangxian.entity.PolicyLevel" >
+    insert into policy_level
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="policyId != null" >
+        policy_id,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="englishLevel != null" >
+        english_level,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="policyId != null" >
+        #{policyId,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="englishLevel != null" >
+        #{englishLevel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangxian.entity.PolicyLevel" >
+    update policy_level
+    <set >
+      <if test="level != null" >
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="englishLevel != null" >
+        english_level = #{englishLevel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where policy_id = #{policyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chuangxian.entity.PolicyLevel" >
+    update policy_level
+    set level = #{level,jdbcType=VARCHAR},
+      english_level = #{englishLevel,jdbcType=VARCHAR}
+    where policy_id = #{policyId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chuangxian.dao.ActivityMapper" >
+  <resultMap id="BaseResultMap" type="com.chuangxian.entity.Activity" >
+    <id column="activity_id" property="activityId" jdbcType="INTEGER" />
+    <result column="activity_time" property="activityTime" jdbcType="VARCHAR" />
+    <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
+    <result column="beginning_time" property="beginningTime" jdbcType="TIMESTAMP" />
+    <result column="ending_time" property="endingTime" jdbcType="TIMESTAMP" />
+    <result column="sponsor" property="sponsor" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    activity_id, activity_time, publish_time, beginning_time, ending_time, sponsor
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from activity
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPage" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List"/>
+    from activity
+    order by  activity_id desc
+    limit #{pageNumber},7
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from activity
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chuangxian.entity.Activity" >
+    insert into activity (activity_id, activity_time, publish_time, 
+      beginning_time, ending_time, sponsor
+      )
+    values (#{activityId,jdbcType=INTEGER}, #{activityTime,jdbcType=VARCHAR}, #{publishTime,jdbcType=TIMESTAMP}, 
+      #{beginningTime,jdbcType=TIMESTAMP}, #{endingTime,jdbcType=TIMESTAMP}, #{sponsor,jdbcType=VARCHAR}
+      )
+  </insert>
+  <select id="selectLastId" resultType="java.lang.Integer">
+    select last_insert_id();
+  </select>
+  <insert id="insertSelective" parameterType="com.chuangxian.entity.Activity" >
+    insert into activity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="activityTime != null" >
+        activity_time,
+      </if>
+      <if test="publishTime != null" >
+        publish_time,
+      </if>
+      <if test="beginningTime != null" >
+        beginning_time,
+      </if>
+      <if test="endingTime != null" >
+        ending_time,
+      </if>
+      <if test="sponsor != null" >
+        sponsor,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="activityId != null" >
+        #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="activityTime != null" >
+        #{activityTime,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null" >
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="beginningTime != null" >
+        #{beginningTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endingTime != null" >
+        #{endingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sponsor != null" >
+        #{sponsor,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangxian.entity.Activity" >
+    update activity
+    <set >
+      <if test="activityTime != null" >
+        activity_time = #{activityTime,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null" >
+        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="beginningTime != null" >
+        beginning_time = #{beginningTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endingTime != null" >
+        ending_time = #{endingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sponsor != null" >
+        sponsor = #{sponsor,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chuangxian.entity.Activity" >
+    update activity
+    set activity_time = #{activityTime,jdbcType=VARCHAR},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      beginning_time = #{beginningTime,jdbcType=TIMESTAMP},
+      ending_time = #{endingTime,jdbcType=TIMESTAMP},
+      sponsor = #{sponsor,jdbcType=VARCHAR}
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </update>
+</mapper>

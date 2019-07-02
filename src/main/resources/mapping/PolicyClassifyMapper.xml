@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chuangxian.dao.PolicyClassifyMapper" >
+  <resultMap id="BaseResultMap" type="com.chuangxian.entity.PolicyClassify" >
+    <id column="policy_id" property="policyId" jdbcType="INTEGER" />
+    <result column="classify" property="classify" jdbcType="VARCHAR" />
+    <result column="english_classify" property="englishClassify" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    policy_id, classify, english_classify
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from policy_classify
+    where policy_id = #{policyId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from  policy_classify
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from policy_classify
+    where policy_id = #{policyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chuangxian.entity.PolicyClassify" >
+    insert into policy_classify (policy_id, classify, english_classify
+      )
+    values (#{policyId,jdbcType=INTEGER}, #{classify,jdbcType=VARCHAR}, #{englishClassify,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chuangxian.entity.PolicyClassify" >
+    insert into policy_classify
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="policyId != null" >
+        policy_id,
+      </if>
+      <if test="classify != null" >
+        classify,
+      </if>
+      <if test="englishClassify != null" >
+        english_classify,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="policyId != null" >
+        #{policyId,jdbcType=INTEGER},
+      </if>
+      <if test="classify != null" >
+        #{classify,jdbcType=VARCHAR},
+      </if>
+      <if test="englishClassify != null" >
+        #{englishClassify,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangxian.entity.PolicyClassify" >
+    update policy_classify
+    <set >
+      <if test="classify != null" >
+        classify = #{classify,jdbcType=VARCHAR},
+      </if>
+      <if test="englishClassify != null" >
+        english_classify = #{englishClassify,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where policy_id = #{policyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chuangxian.entity.PolicyClassify" >
+    update policy_classify
+    set classify = #{classify,jdbcType=VARCHAR},
+      english_classify = #{englishClassify,jdbcType=VARCHAR}
+    where policy_id = #{policyId,jdbcType=INTEGER}
+  </update>
+</mapper>
