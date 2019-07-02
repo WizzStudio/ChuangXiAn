@@ -49,4 +49,15 @@ public class PolicyServiceImpl implements PolicyService {
             return null;
         }
     }
+
+    @Override
+    public List<Policy> getPolicyByPage(int page) {
+        page--;
+        return policyMapper.selectByPageNumber(page);
+    }
+
+    @Override
+    public Policy getPolicyById(int id) {
+        return policyMapper.selectByPrimaryKey(id);
+    }
 }

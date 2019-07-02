@@ -10,4 +10,8 @@ public interface PolicyService {
     void savePolicies(List<Policy> policies) throws Exception;
 
     Policy findByOriginalUrl(String originalUrl);
+
+    List<Policy> getPolicyByPage(int page);
+
+    Policy getPolicyById(int id);
 }
