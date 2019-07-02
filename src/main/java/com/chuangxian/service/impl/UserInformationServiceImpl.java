@@ -52,7 +52,6 @@ public class UserInformationServiceImpl implements UserInformationService {
 
             if (userInformationMapper.insert(res) != 0) {
                 return new CacheResponseBody<>(0, wechatResponseBody.getSession_key(), userInformationMapper.selectByOpenId(wechatResponseBody.getOpenid()));
-
             } else {
                 log.error("【数据库操作】插入失败！");
                 return new CacheResponseBody<>(1, wechatResponseBody.getSession_key(), null);

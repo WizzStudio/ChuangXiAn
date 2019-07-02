@@ -9,7 +9,7 @@ server:
   use-forward-headers: true
 
 mybatis:
-  type-aliases-package: com/volunteer/volunteer/model
+  type-aliases-package: com/chuangxian/entity
   mapper-locations: classpath:mapping/*.xml
 
 spring:
