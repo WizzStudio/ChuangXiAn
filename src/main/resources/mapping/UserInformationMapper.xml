@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chuangxian.dao.UserInformationMapper">
+  <resultMap id="BaseResultMap" type="com.chuangxian.entity.UserInformation">
+    <id column="main_id" jdbcType="INTEGER" property="mainId" />
+    <result column="open_id" jdbcType="VARCHAR" property="openId" />
+    <result column="false_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="head_picture_url" jdbcType="VARCHAR" property="headPictureUrl" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    main_id, open_id, false_name, head_picture_url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from information
+    where main_id = #{mainId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from information
+    where main_id = #{mainId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chuangxian.entity.UserInformation">
+    insert into information (main_id, open_id, false_name, 
+      head_picture_url)
+    values (#{mainId,jdbcType=INTEGER}, #{openId,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR},
+      #{headPictureUrl,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, 
+      #{telNo,jdbcType=CHAR}, #{wechat,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, 
+      #{school,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, #{registTime,jdbcType=TIMESTAMP}, 
+      #{position,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chuangxian.entity.UserInformation">
+    insert into information
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mainId != null">
+        main_id,
+      </if>
+      <if test="openId != null">
+        open_id,
+      </if>
+      <if test="nickName != null">
+        false_name,
+      </if>
+      <if test="headPictureUrl != null">
+        head_picture_url,
+      </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mainId != null">
+        #{mainId,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null">
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headPictureUrl != null">
+        #{headPictureUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangxian.entity.UserInformation">
+    update information
+    <set>
+      <if test="openId != null">
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        false_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headPictureUrl != null">
+        head_picture_url = #{headPictureUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where main_id = #{mainId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chuangxian.entity.UserInformation">
+    update information
+    set open_id = #{openId,jdbcType=VARCHAR},
+      false_name = #{nickName,jdbcType=VARCHAR},
+      head_picture_url = #{headPictureUrl,jdbcType=VARCHAR}
+    where main_id = #{mainId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.chuangxian.entity.UserInformation">
+    <id column="main_id" jdbcType="INTEGER" property="mainId" />
+    <result column="open_id" jdbcType="VARCHAR" property="openId" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="head_picture_url" jdbcType="VARCHAR" property="headPictureUrl" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    main_id, open_id, nick_name, head_picture_url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from information
+    where main_id = #{mainId,jdbcType=INTEGER}
+  </select>
+    <select id="selectByOpenId" parameterType="java.lang.String" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from information
+      where open_id = #{openId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from information
+    where main_id = #{mainId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByOpenId" parameterType="java.lang.String">
+    delete from information
+    where open_id = #{mainId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chuangxian.entity.UserInformation">
+    insert into information (main_id, open_id, nick_name, 
+      head_picture_url)
+    values (#{mainId,jdbcType=INTEGER}, #{openId,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+      #{headPictureUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chuangxian.entity.UserInformation">
+    insert into information
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mainId != null">
+        main_id,
+      </if>
+      <if test="openId != null">
+        open_id,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="headPictureUrl != null">
+        head_picture_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mainId != null">
+        #{mainId,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null">
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headPictureUrl != null">
+        #{headPictureUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangxian.entity.UserInformation">
+    update information
+    <set>
+      <if test="openId != null">
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headPictureUrl != null">
+        head_picture_url = #{headPictureUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where main_id = #{mainId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chuangxian.entity.UserInformation">
+    update information
+    set open_id = #{openId,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      head_picture_url = #{headPictureUrl,jdbcType=VARCHAR}
+    where main_id = #{mainId,jdbcType=INTEGER}
+  </update>
+</mapper>
