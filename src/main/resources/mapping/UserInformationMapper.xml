@@ -4,11 +4,11 @@
   <resultMap id="BaseResultMap" type="com.chuangxian.entity.UserInformation">
     <id column="main_id" jdbcType="INTEGER" property="mainId" />
     <result column="open_id" jdbcType="VARCHAR" property="openId" />
-    <result column="false_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
     <result column="head_picture_url" jdbcType="VARCHAR" property="headPictureUrl" />
   </resultMap>
   <sql id="Base_Column_List">
-    main_id, open_id, false_name, head_picture_url
+    main_id, open_id, nick_name, head_picture_url
   </sql>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
