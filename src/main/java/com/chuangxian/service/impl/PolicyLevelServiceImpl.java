@@ -3,10 +3,11 @@ package com.chuangxian.service.impl;
 import com.chuangxian.dao.PolicyLevelMapper;
 import com.chuangxian.entity.PolicyLevel;
 import com.chuangxian.service.PolicyLevelService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-
+@Service
 public class PolicyLevelServiceImpl implements PolicyLevelService {
     @Resource
     private PolicyLevelMapper policyLevelMapper;

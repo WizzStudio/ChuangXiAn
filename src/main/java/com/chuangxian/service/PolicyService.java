@@ -1,6 +1,7 @@
 package com.chuangxian.service;
 
 import com.chuangxian.entity.Policy;
+import com.chuangxian.entity.dto.PolicyPreview;
 
 import java.util.List;
 
@@ -11,7 +12,13 @@ public interface PolicyService {
 
     Policy findByOriginalUrl(String originalUrl);
 
-    List<Policy> getPolicyByPage(int page);
+    List<PolicyPreview> getPolicyByPage(int page);
 
     Policy getPolicyById(int id);
+
+    List<PolicyPreview> getPolicyByClassify(int page,String classify);
+
+    List<PolicyPreview> getPolicyByLevel(int page,String level);
+
+    List<PolicyPreview> search(String keyword);
 }
