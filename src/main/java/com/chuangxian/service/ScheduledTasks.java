@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 
-@Component
+//@Component
 public class ScheduledTasks {
 
     @Resource
