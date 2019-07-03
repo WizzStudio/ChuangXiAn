@@ -83,7 +83,12 @@ public class PolicyServiceImpl implements PolicyService {
     }
 
     @Override
-    public List<PolicyPreview> search(String keyword) {
-        return policyMapper.searchPolicy(keyword);
+    public List<PolicyPreview> search(int page,String keyword)
+    {
+        Map<String,Object> data = new HashMap<>();
+        page--;
+        data.put("pageNumber",page);
+        data.put("keyword",keyword);
+        return policyMapper.searchPolicy(data);
     }
 }

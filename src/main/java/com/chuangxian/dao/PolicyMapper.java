@@ -23,7 +23,7 @@ public interface PolicyMapper {
 
     Policy selectByOriginalUrl(String originalUrl);
 
-    List<PolicyPreview> searchPolicy(String keyword);
+    List<PolicyPreview> searchPolicy(Map<String,Object> data);
 
     int updateByPrimaryKeySelective(Policy record);
 

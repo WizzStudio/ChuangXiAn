@@ -2,13 +2,17 @@ package com.chuangxian.controller;
 
 import com.chuangxian.service.PolicyService;
 import com.chuangxian.util.ToolSupport.UniversalResponseBody;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 
 @RestController
+@CrossOrigin
 public class PolicyController {
     @Resource
     private PolicyService policyService;
@@ -27,18 +31,19 @@ public class PolicyController {
     public UniversalResponseBody getClassifyPolicy(@PathVariable("classify")String classify,
                                                    @PathVariable("page")int page){
         return new UniversalResponseBody<>(0,"success",
-                policyService.getPolicyByClassify(page,classify));
+                policyService.getPolicyByClassify(page, URLDecoder.decode(classify, StandardCharsets.UTF_8)));
     }
 
     @GetMapping("/policy/level/{level}/{page}")
     public UniversalResponseBody getLevelPolicy(@PathVariable("level")String level,
                                                 @PathVariable("page")int page){
         return new UniversalResponseBody<>(0,"success",
-                policyService.getPolicyByLevel(page,level));
+                policyService.getPolicyByLevel(page,URLDecoder.decode(level,StandardCharsets.UTF_8)));
     }
 
-    @GetMapping("/policy/search/{keyword}")
-    public UniversalResponseBody search(@PathVariable("keyword")String keyword){
-        return new UniversalResponseBody<>(0,"success",policyService.search(keyword));
+    @GetMapping("/policy/search/{keyword}/{page}")
+    public UniversalResponseBody search(@PathVariable("keyword")String keyword,
+                                        @PathVariable("page") int page){
+        return new UniversalResponseBody<>(0,"success",policyService.search(page,URLDecoder.decode(keyword,StandardCharsets.UTF_8)));
     }
 }
