@@ -13,6 +13,8 @@ public interface PolicyLevelMapper {
 
     PolicyLevel selectByPrimaryKey(Integer policyId);
 
+    PolicyLevel selectByLevel(String level);
+
     List<PolicyLevel> selectAll();
 
     int updateByPrimaryKeySelective(PolicyLevel record);

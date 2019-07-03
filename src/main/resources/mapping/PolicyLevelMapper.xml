@@ -20,7 +20,13 @@
     <include refid="Base_Column_List"/>
     from  policy_level
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="selectByLevel" resultMap="BaseResultMap" parameterType="java.lang.String">
+      select
+      <include refid="Base_Column_List" />
+      from policy_level
+      where level = #{level,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from policy_level
     where policy_id = #{policyId,jdbcType=INTEGER}
   </delete>

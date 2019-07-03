@@ -1,5 +1,4 @@
-package com.chuangxian.dto;
-
+package com.chuangxian.entity.dto;
 
 import java.io.Serializable;
 

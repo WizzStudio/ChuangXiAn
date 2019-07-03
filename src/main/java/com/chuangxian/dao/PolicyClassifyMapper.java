@@ -13,6 +13,8 @@ public interface PolicyClassifyMapper {
 
     PolicyClassify selectByPrimaryKey(Integer policyId);
 
+    PolicyClassify selectByClassify(String classify);
+
     List<PolicyClassify> selectAll();
 
     int updateByPrimaryKeySelective(PolicyClassify record);

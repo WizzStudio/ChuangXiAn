@@ -1,6 +1,6 @@
 package com.chuangxian.controller;
 
-import com.chuangxian.dto.WxInfo;
+import com.chuangxian.entity.dto.WxInfo;
 import com.chuangxian.service.UserInformationService;
 import com.chuangxian.util.ToolSupport.CacheResponseBody;
 import com.chuangxian.util.ToolSupport.UniversalResponseBody;

@@ -8,13 +8,15 @@ import com.chuangxian.service.PolicyService;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Slf4j
 public class XiAnPolicyCrawler extends BreadthCrawler {
     private List<Policy> policies = new ArrayList<>();
+    private Set<String> levels = new HashSet<>();
+    private Set<String> classifies = new HashSet<>();
 
     @Resource
     private PolicyService policyService;
@@ -163,15 +165,23 @@ public class XiAnPolicyCrawler extends BreadthCrawler {
                     }
                 }
                 policies.add(policy);
+                levels.add(policy.getLevel());
+                classifies.add(policy.getClassify());
             }
         }
     }
 
-    public List<Policy> result() {
+    public List<Policy> PolicyResult() {
         return policies;
     }
 
+    public Set<String> LevelsResult() {
+        return levels;
+    }
 
+    public Set<String> ClassifiesResult() {
+        return classifies;
+    }
 
     /**
      * XiAnPolicyCrawler 构造器中会进行 数据初始化，这两个参数接着会传给父类

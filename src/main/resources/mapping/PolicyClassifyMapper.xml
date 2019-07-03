@@ -20,7 +20,13 @@
     <include refid="Base_Column_List"/>
     from  policy_classify
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="selectByClassify" resultMap="BaseResultMap" parameterType="java.lang.String">
+      select
+      <include refid="Base_Column_List" />
+      from policy_classify
+      where classify = #{classify,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from policy_classify
     where policy_id = #{policyId,jdbcType=INTEGER}
   </delete>

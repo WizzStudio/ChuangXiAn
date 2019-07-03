@@ -1,7 +1,7 @@
 package com.chuangxian.service.impl;
 
 import com.chuangxian.dao.UserInformationMapper;
-import com.chuangxian.dto.WxInfo;
+import com.chuangxian.entity.dto.WxInfo;
 import com.chuangxian.entity.UserInformation;
 import com.chuangxian.service.UserInformationService;
 import com.chuangxian.util.ToolSupport.CacheResponseBody;
