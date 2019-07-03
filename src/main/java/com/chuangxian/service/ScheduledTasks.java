@@ -36,7 +36,7 @@ public class ScheduledTasks {
      * 定时执行，只执行一次，全部爬虫存入数据库
      * 表达式：5月27日16：28：00 开始执行
     */
-    @Scheduled(cron = "0 28 16 27 5 * ")
+    @Scheduled(cron = "0 10 18 03 7 * ")
     public void firstXiAnPolicyCrawler() {
         for (int page = 1; page <= 18; page++) {
             XiAnPolicyCrawler crawler = new XiAnPolicyCrawler("src/main/resources/crawl/", true, page, 0);

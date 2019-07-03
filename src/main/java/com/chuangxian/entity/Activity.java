@@ -7,6 +7,10 @@ public class Activity {
 
     private String activityTime;
 
+    private String activityTitle;
+
+    private String activityContent;
+
     private Date publishTime;
 
     private Date beginningTime;
@@ -29,6 +33,22 @@ public class Activity {
 
     public void setActivityTime(String activityTime) {
         this.activityTime = activityTime == null ? null : activityTime.trim();
+    }
+
+    public String getActivityTitle() {
+        return activityTitle;
+    }
+
+    public void setActivityTitle(String activityTitle) {
+        this.activityTitle = activityTitle == null ? null : activityTitle.trim();
+    }
+
+    public String getActivityContent() {
+        return activityContent;
+    }
+
+    public void setActivityContent(String activityContent) {
+        this.activityContent = activityContent == null ? null : activityContent.trim();
     }
 
     public Date getPublishTime() {

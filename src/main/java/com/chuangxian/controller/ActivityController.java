@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.List;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 
 @RestController
 public class ActivityController {
@@ -18,7 +19,12 @@ public class ActivityController {
 
     @PostMapping("/activity/new")
     public UniversalResponseBody newActivity(Activity record){
-        return new UniversalResponseBody(0,"success");
+        int activityId = activityService.addNewActivity(record);
+        if (activityId != -1) {
+            return new UniversalResponseBody<>(0, "success",activityId);
+        }else{
+            return new UniversalResponseBody(-1,"error");
+        }
     }
 
     @GetMapping("/activity/detail/{id}")
@@ -31,8 +37,14 @@ public class ActivityController {
         }
     }
 
-    @GetMapping("/acticity/page/{page}")
+    @GetMapping("/activity/page/{page}")
     public UniversalResponseBody getActivityByPage(@PathVariable("page")int pageNumber){
         return new UniversalResponseBody<>(0,"success",activityService.getActivityList(pageNumber));
+    }
+
+    @GetMapping("/activity/search/{keyword}/{page}")
+    public UniversalResponseBody searchKeyword(@PathVariable("keyword")String keyword,
+                                               @PathVariable("page")int page){
+        return new UniversalResponseBody<>(0,"success",activityService.searchActivity(page, URLDecoder.decode(keyword, StandardCharsets.UTF_8)));
     }
 }
