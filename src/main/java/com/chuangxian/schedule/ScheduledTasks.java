@@ -1,10 +1,9 @@
-package com.chuangxian.service;
+package com.chuangxian.schedule;
 
 import com.chuangxian.service.PolicyService;
 import com.chuangxian.util.XiAnPolicyCrawler;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 
