@@ -16,6 +16,12 @@
   <resultMap id="ResultMapWithBLOBs" type="com.chuangxian.entity.Policy" extends="BaseResultMap" >
     <result column="policy_content" property="policyContent" jdbcType="LONGVARCHAR" />
   </resultMap>
+  <resultMap id="PreviewDTO" type="com.chuangxian.entity.dto.PolicyPreview">
+    <id column="policy_id" property="policyId" jdbcType="INTEGER" />
+    <result column="poicy_title" property="policyTitle" jdbcType="VARCHAR"/>
+    <result column="publish_institution" property="publishInstitution" jdbcType="VARCHAR"/>
+    <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP"/>
+  </resultMap>
   <sql id="Base_Column_List" >
     policy_id, poicy_title, level, publish_institution, issued_num, classify, publish_time, 
     image_url, file_url, original_url
@@ -39,7 +45,36 @@
       from policy
       where original_url = #{originalUrl,jdbcType=VARCHAR}
     </select>
+  <select id="selectByPageNumber" resultMap="PreviewDTO" parameterType="java.lang.Integer">
+    select
+    policy_id,poicy_title,publish_institution,publish_time
+    from policy
+    order by policy_id desc
+    limit #{pageNumber},7
 
+  </select>
+  <select id="selectByClassify" resultMap="PreviewDTO">
+    select
+    policy_id,poicy_title,publish_institution,publish_time
+    from policy
+    where classify = #{classify}
+    order by policy_id desc
+    limit #{pageNumber},7
+  </select>
+  <select id="selectByLevel" resultMap="PreviewDTO">
+    select
+    policy_id,poicy_title,publish_institution,publish_time
+    from policy
+    where level = #{level}
+    order by policy_id desc
+    limit #{pageNumber},7
+  </select>
+  <select id="searchPolicy" resultMap="PreviewDTO">
+    select
+           policy_id,poicy_title,publish_institution,publish_time
+    from  policy
+    where poicy_title like CONCAT(CONCAT('%', #{keyword}), '%')
+  </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from policy
     where policy_id = #{policyId,jdbcType=INTEGER}
