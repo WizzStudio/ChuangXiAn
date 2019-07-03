@@ -20,5 +20,5 @@ public interface PolicyService {
 
     List<PolicyPreview> getPolicyByLevel(int page,String level);
 
-    List<PolicyPreview> search(String keyword);
+    List<PolicyPreview> search(int page,String keyword);
 }
