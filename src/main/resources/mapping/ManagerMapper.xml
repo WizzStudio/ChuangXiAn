@@ -15,7 +15,13 @@
     from manager
     where manager_id = #{managerId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="selectByManagerName" resultMap="BaseResultMap" parameterType="java.lang.String">
+      select
+      <include refid="Base_Column_List" />
+      from manager
+      where manager_name = #{managerName,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from manager
     where manager_id = #{managerId,jdbcType=INTEGER}
   </delete>

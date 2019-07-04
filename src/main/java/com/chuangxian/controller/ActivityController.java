@@ -31,7 +31,7 @@ public class ActivityController {
         }
     }
 
-    @GetMapping("/acticity/page/{page}")
+    @GetMapping("/activity/page/{page}")
     public UniversalResponseBody getActivityByPage(@PathVariable("page")int pageNumber){
         return new UniversalResponseBody<>(0,"success",activityService.getActivityList(pageNumber));
     }

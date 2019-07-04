@@ -21,23 +21,7 @@ import java.util.Set;
 @SpringBootTest
 public class ChuangXiAnApplicationTests {
 
-    @Resource
-    private PolicyLevelService policyLevelService;
-
     @Test
     public void test() {
-       Set<String> levels = new HashSet<>();
-
-
-        levels.add("yi");
-        levels.add("er");
-            //policyLevelService.addNewPolicyLevel(policyLevel);
-
-        try {
-            policyLevelService.addNewPolicyLevels(levels);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
     }
 }

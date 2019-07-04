@@ -11,6 +11,8 @@ public interface ManagerMapper {
 
     Manager selectByPrimaryKey(Integer managerId);
 
+    Manager selectByManagerName(String managerName);
+
     int updateByPrimaryKeySelective(Manager record);
 
     int updateByPrimaryKey(Manager record);
