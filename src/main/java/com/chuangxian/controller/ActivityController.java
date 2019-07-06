@@ -1,7 +1,9 @@
 package com.chuangxian.controller;
 
 import com.chuangxian.entity.Activity;
+import com.chuangxian.entity.dto.ActivityTransforSupport;
 import com.chuangxian.service.ActivityService;
+import com.chuangxian.util.String2DateUtils;
 import com.chuangxian.util.ToolSupport.UniversalResponseBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,8 +20,17 @@ public class ActivityController {
     private ActivityService activityService;
 
     @PostMapping("/activity/new")
-    public UniversalResponseBody newActivity(Activity record){
-        int activityId = activityService.addNewActivity(record);
+    public UniversalResponseBody newActivity(ActivityTransforSupport record){
+        Activity insertData = new Activity();
+        insertData.setActivityContent(record.getActivityContent());
+        insertData.setActivityId(record.getActivityId());
+        insertData.setActivityTitle(record.getActivityTitle());
+        insertData.setActivityTime(record.getActivityTime());
+        insertData.setEndingTime(String2DateUtils.parseDateStr(record.getEndingTime()));
+        insertData.setPublishTime(String2DateUtils.parseDateStr(record.getPublishTime()));
+        insertData.setSponsor(record.getSponsor());
+        insertData.setBeginningTime(String2DateUtils.parseDateStr(record.getBeginningTime()));
+        int activityId = activityService.addNewActivity(insertData);
         if (activityId != -1) {
             return new UniversalResponseBody<>(0, "success",activityId);
         }else{
