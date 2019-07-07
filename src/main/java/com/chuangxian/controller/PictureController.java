@@ -35,8 +35,8 @@ public class PictureController {
             return new UniversalResponseBody(1,"failed");
         }
     }
-    @GetMapping("/show")
-    public UniversalResponseBody getPictureURL(@RequestParam("activityId")int activityId){
+    @GetMapping("/show/{activityId}")
+    public UniversalResponseBody getPictureURL(@PathVariable("activityId") int activityId){
         List<Picture> temp = pictureService.getPictureByActivityId(activityId);
         List<String> res = new ArrayList<>();
         for (Picture row: temp) {
