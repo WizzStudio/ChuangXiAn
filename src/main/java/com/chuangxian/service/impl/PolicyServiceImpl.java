@@ -91,4 +91,14 @@ public class PolicyServiceImpl implements PolicyService {
         data.put("keyword",keyword);
         return policyMapper.searchPolicy(data);
     }
+
+    @Override
+    public List<PolicyPreview> getBothSearch(int page, String level, String classify) {
+        Map<String,Object> data = new HashMap<>();
+        page--;
+        data.put("pageNumber",page);
+        data.put("level",level);
+        data.put("classify",classify);
+        return policyMapper.selectByBothLevelAndClassify(data);
+    }
 }

@@ -19,6 +19,8 @@ public interface PolicyMapper {
 
     List<PolicyPreview> selectByLevel(Map<String,Object> data);
 
+    List<PolicyPreview> selectByBothLevelAndClassify(Map<String,Object> data);
+
     Policy selectByPrimaryKey(Integer policyId);
 
     Policy selectByOriginalUrl(String originalUrl);
