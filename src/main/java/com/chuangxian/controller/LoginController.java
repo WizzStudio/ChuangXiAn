@@ -44,14 +44,14 @@ public class LoginController {
         }
     }
 
-    @GetMapping("/check/session")
-    public UniversalResponseBody checkSession(String session) {
+    @GetMapping("/check/{session}")
+    public UniversalResponseBody checkSession(@PathVariable("session") String session) {
         boolean flag = redisTemplate.hasKey("userCache::" + session);
         if (flag) {
-            return new UniversalResponseBody(0, "success");
+            return new UniversalResponseBody(0, "Unexpired");
         } else {
             log.info("日志信息：访问拦截。提交的session过期" + session);
-            return new UniversalResponseBody(102, "failed");
+            return new UniversalResponseBody(102, "Expired");
         }
     }
 
