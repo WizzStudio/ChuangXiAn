@@ -69,6 +69,14 @@
     order by policy_id desc
     limit #{pageNumber},7
   </select>
+  <select id="selectByBothLevelAndClassify" resultMap="PreviewDTO">
+    select
+           policy_id,poicy_title,publish_institution,publish_time
+    from policy
+    where level = #{level} AND classify = #{classify}
+    order by policy_id desc
+    limit #{pageNumber},7
+  </select>
   <select id="searchPolicy" resultMap="PreviewDTO">
     select
            policy_id,poicy_title,publish_institution,publish_time
