@@ -41,6 +41,14 @@ public class PolicyController {
                 policyService.getPolicyByLevel(page,URLDecoder.decode(level,StandardCharsets.UTF_8)));
     }
 
+    @GetMapping("/policy/both/{level}/{classify}/{page}")
+    public UniversalResponseBody getBothPolicy(@PathVariable("level")String level,
+                                               @PathVariable("classify")String classify,
+                                               @PathVariable("page")int page){
+        return new UniversalResponseBody<>(0,"success",
+                policyService.getBothSearch(page,level,classify));
+    }
+
     @GetMapping("/policy/search/{keyword}/{page}")
     public UniversalResponseBody search(@PathVariable("keyword")String keyword,
                                         @PathVariable("page") int page){

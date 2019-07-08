@@ -1,8 +1,8 @@
-package com.chuangxian.entity;
+package com.chuangxian.entity.dto;
 
 import java.util.Date;
 
-public class Activity {
+public class ActivityTransforSupport {
     private Integer activityId;
 
     private String activityTime;
@@ -11,11 +11,11 @@ public class Activity {
 
     private String activityContent;
 
-    private Date publishTime;
+    private String publishTime;
 
-    private Date beginningTime;
+    private String beginningTime;
 
-    private Date endingTime;
+    private String endingTime;
 
     private String sponsor;
 
@@ -32,7 +32,7 @@ public class Activity {
     }
 
     public void setActivityTime(String activityTime) {
-        this.activityTime = activityTime == null ? null : activityTime.trim();
+        this.activityTime = activityTime;
     }
 
     public String getActivityTitle() {
@@ -40,7 +40,7 @@ public class Activity {
     }
 
     public void setActivityTitle(String activityTitle) {
-        this.activityTitle = activityTitle == null ? null : activityTitle.trim();
+        this.activityTitle = activityTitle;
     }
 
     public String getActivityContent() {
@@ -48,30 +48,30 @@ public class Activity {
     }
 
     public void setActivityContent(String activityContent) {
-        this.activityContent = activityContent == null ? null : activityContent.trim();
+        this.activityContent = activityContent;
     }
 
-    public Date getPublishTime() {
+    public String getPublishTime() {
         return publishTime;
     }
 
-    public void setPublishTime(Date publishTime) {
+    public void setPublishTime(String publishTime) {
         this.publishTime = publishTime;
     }
 
-    public Date getBeginningTime() {
+    public String getBeginningTime() {
         return beginningTime;
     }
 
-    public void setBeginningTime(Date beginningTime) {
+    public void setBeginningTime(String beginningTime) {
         this.beginningTime = beginningTime;
     }
 
-    public Date getEndingTime() {
+    public String getEndingTime() {
         return endingTime;
     }
 
-    public void setEndingTime(Date endingTime) {
+    public void setEndingTime(String endingTime) {
         this.endingTime = endingTime;
     }
 
@@ -80,6 +80,6 @@ public class Activity {
     }
 
     public void setSponsor(String sponsor) {
-        this.sponsor = sponsor == null ? null : sponsor.trim();
+        this.sponsor = sponsor;
     }
 }
