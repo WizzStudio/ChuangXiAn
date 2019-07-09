@@ -23,17 +23,17 @@ public class ManagerLoginData {
     public ManagerLoginData(String managerName, String managerPwd) {
         this.managerName = managerName;
         this.managerPassword = managerPwd;
-        this.session_key = null;
+        this.session_key = setMd5Session();
     }
 
     public ManagerLoginData(String managerName, String managerPwd, String session_key) {
         this.managerName = managerName;
         this.managerPassword = managerPwd;
-        this.session_key = setMd5Session(session_key);
+        this.session_key = setMd5Session();
     }
 
-    private String setMd5Session(String session_key) {
-        return MD5Util.encrypt(RandomUtil.getSixRandom(6) + session_key);
+    private String setMd5Session() {
+        return MD5Util.encrypt(RandomUtil.getSixRandom(16));
     }
 
     public String getManagerName() {
