@@ -12,9 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
 
 @RestController
@@ -55,11 +53,23 @@ public class LoginController {
         }
     }
 
-    @Cacheable(value = "managerCache", key = "'sessionKey::'+#loginData.session_key", condition = "#loginData.session_key !=null")
+    /**
+     * @Description: 解决bug，当用户不存在或密码错误时，将session存入，此时同一session会返回上次的错误信息
+     * TODO bug暂未更改
+     */
+    //@Cacheable(value = "managerCache", key = "#session_key", condition = "#session_key != null")
     @RequestMapping(value = "/manager", method = RequestMethod.POST)
-    public CacheResponseBody Login(@NotNull ManagerLoginData loginData, HttpServletRequest request) {
+    public CacheResponseBody Login(@NotNull @RequestParam("managerName") String managerName,
+                                   @NotNull @RequestParam("managerPassword") String managerPassword,
+                                   @RequestParam("session_key") String session_key) {
         try {
-            return managerService.managerLogin(loginData);
+            if (session_key.equals("")) {
+                ManagerLoginData loginData = new ManagerLoginData(managerName, managerPassword);
+                return managerService.managerLogin(loginData);
+            } else {
+                ManagerLoginData loginData = new ManagerLoginData(managerName, managerPassword, session_key);
+                return managerService.managerLogin(loginData);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             log.error("【manager登陆】登陆失败", e);
