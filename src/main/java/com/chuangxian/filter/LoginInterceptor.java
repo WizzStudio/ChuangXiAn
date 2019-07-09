@@ -25,15 +25,14 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String session = request.getParameter("session_key");
-        boolean flag = redisTemplate.hasKey("managerCache::" + session);
+        boolean flag = redisTemplate.hasKey("managerCache::sessionKey" + session);
         if(flag){
             return true;
         }else {
             log.info("日志信息：访问拦截。提交的session为" + session);
             response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write("{\"errCode\":-1,\"msg\":\"failed\"}");
             response.setStatus(403);
-            response.getWriter().write("{\"errCode\":-1,\"msg\":\"失败\"}");
+            response.getWriter().write("{\"errCode\":-1,\"msg\":\"failed\"}");
             return false;
         }
     }
