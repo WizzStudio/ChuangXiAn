@@ -37,7 +37,7 @@ public class ManagerServiceImpl implements ManagerService {
 
 
     @Override
-    @CachePut(value = "managerCache", key = "#loginData.session_key", condition = "#loginData.session_key !=null")
+    @CachePut(value = "chuangxian::managerCache", key = "#loginData.session_key", condition = "#loginData.session_key !=null")
     public CacheResponseBody managerLogin(ManagerLoginData loginData){
         try {
             Manager manager = managerMapper.selectByManagerName(loginData.getManagerName());

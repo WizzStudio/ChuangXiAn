@@ -45,7 +45,7 @@ public class LoginController {
 
     @GetMapping("/check/{session}")
     public UniversalResponseBody checkSession(@PathVariable("session") String session) {
-        boolean flag = redisTemplate.hasKey("userCache::" + session);
+        boolean flag = redisTemplate.hasKey("chuangxian::managerCache::" + session);
         if (flag) {
             return new UniversalResponseBody(0, "Unexpired");
         } else {
