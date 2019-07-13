@@ -47,7 +47,7 @@ public class ActivityServiceImpl implements ActivityService {
     public List<ActivityPreview> getActivityList(int pageNumber) {
         //从0开始
         pageNumber--;
-        return activityMapper.selectByPage(pageNumber);
+        return activityMapper.selectByPage(pageNumber*7);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class ActivityServiceImpl implements ActivityService {
     public List<ActivityPreview> searchActivity(int page, String keyword) {
         page--;
         Map<String,Object> data = new HashMap<>();
-        data.put("pageNumber",page);
+        data.put("pageNumber",page*7);
         data.put("keyword",keyword);
         return activityMapper.selectSearch(data);
     }

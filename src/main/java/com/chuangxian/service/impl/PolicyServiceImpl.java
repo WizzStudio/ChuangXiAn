@@ -56,7 +56,7 @@ public class PolicyServiceImpl implements PolicyService {
     @Override
     public List<PolicyPreview> getPolicyByPage(int page) {
         page--;
-        return policyMapper.selectByPageNumber(page);
+        return policyMapper.selectByPageNumber(page*7);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class PolicyServiceImpl implements PolicyService {
     public List<PolicyPreview> getPolicyByClassify(int page, String classify) {
         Map<String,Object> data = new HashMap<>();
         page--;
-        data.put("pageNumber",page);
+        data.put("pageNumber",page*7);
         data.put("classify",classify);
         return policyMapper.selectByClassify(data);
     }
@@ -77,7 +77,7 @@ public class PolicyServiceImpl implements PolicyService {
     public List<PolicyPreview> getPolicyByLevel(int page,String level) {
         Map<String,Object> data = new HashMap<>();
         page--;
-        data.put("pageNumber",page);
+        data.put("pageNumber",page*7);
         data.put("level",level);
         return policyMapper.selectByLevel(data);
     }
@@ -87,7 +87,7 @@ public class PolicyServiceImpl implements PolicyService {
     {
         Map<String,Object> data = new HashMap<>();
         page--;
-        data.put("pageNumber",page);
+        data.put("pageNumber",page*7);
         data.put("keyword",keyword);
         return policyMapper.searchPolicy(data);
     }
@@ -96,7 +96,7 @@ public class PolicyServiceImpl implements PolicyService {
     public List<PolicyPreview> getBothSearch(int page, String level, String classify) {
         Map<String,Object> data = new HashMap<>();
         page--;
-        data.put("pageNumber",page);
+        data.put("pageNumber",page*7);
         data.put("level",level);
         data.put("classify",classify);
         return policyMapper.selectByBothLevelAndClassify(data);
